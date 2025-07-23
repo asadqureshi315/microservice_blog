@@ -1,0 +1,29 @@
+# Ignore node modules
+node_modules/
+
+# Ignore build output
+dist/
+build/
+
+# Ignore env files
+.env
+.env.local
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+logs/
+*.log
+
+# Ignore editor files
+.vscode/
+.idea/
+*.swp
+
+# Ignore test coverage
+coverage/
+
+# Optional: ignore everything in folders named `temp/`
+**/temp/
