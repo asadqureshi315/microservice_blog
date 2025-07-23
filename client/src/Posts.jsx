@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Comments from "./Comments";
 
 const POST_SERVICE = "http://localhost:3333";
+const QUERY_POST_SERVICE = "http://localhost:3335";
 
 function Posts() {
   const [posts, setPosts] = useState({});
@@ -10,7 +11,7 @@ function Posts() {
   // Fetch all posts on mount
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch(`${POST_SERVICE}/post`);
+      const res = await fetch(`${QUERY_POST_SERVICE}/query-post`);
       const data = await res.json();
       setPosts(data);
     };
@@ -58,7 +59,7 @@ function Posts() {
         {Object.values(posts).map((post) => (
           <div key={post.id} className="bg-gray-800 p-4 rounded shadow">
             <h3 className="text-lg font-bold">{post.title}</h3>
-            <Comments postId={post.id} />
+            <Comments postId={post.id} commentsList={post?.comments || []} />
           </div>
         ))}
       </div>

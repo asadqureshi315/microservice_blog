@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 
 const COMMENT_SERVICE = "http://localhost:3334";
 
-function Comments({ postId }) {
+function Comments({ postId, commentsList }) {
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState("");
 
   // Fetch comments for this post
-  useEffect(() => {
-    const fetchComments = async () => {
-      const res = await fetch(`${COMMENT_SERVICE}/post/${postId}/comment`);
-      const data = await res.json();
-      setComments(data || []);
-    };
+  // useEffect(() => {
+  //   const fetchComments = async () => {
+  //     const res = await fetch(`${COMMENT_SERVICE}/post/${postId}/comment`);
+  //     const data = await res.json();
+  //     setComments(data || []);
+  //   };
 
-    fetchComments();
-  }, [postId]);
+  //   fetchComments();
+  // }, [postId]);
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -34,12 +34,27 @@ function Comments({ postId }) {
 
   return (
     <div className="mt-4">
-      <p className="italic text-sm mb-1">{comments.length} comments</p>
-      <ul className="list-disc list-inside mb-2">
-        {comments.map((c) => (
-          <li key={c.id}>{c.content}</li>
-        ))}
-      </ul>
+      {commentsList.length ? (
+        <>
+          <p className="italic text-sm mb-1">
+            {commentsList.length} commentsList
+          </p>
+          <ul className="list-disc list-inside mb-2">
+            {commentsList.map((c) => (
+              <li key={c.id}>{c.content}</li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <>
+          <p className="italic text-sm mb-1">{comments.length} comments</p>
+          <ul className="list-disc list-inside mb-2">
+            {comments.map((c) => (
+              <li key={c.id}>{c.content}</li>
+            ))}
+          </ul>
+        </>
+      )}
       <form onSubmit={handleCommentSubmit}>
         <label className="text-sm block mb-1">Comment</label>
         <input
