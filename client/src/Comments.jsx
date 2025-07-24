@@ -41,7 +41,9 @@ function Comments({ postId, commentsList }) {
           </p>
           <ul className="list-disc list-inside mb-2">
             {commentsList.map((c) => (
-              <li key={c.id}>{c.content}</li>
+              <li key={c.id}>
+                {c.content} {c.status}
+              </li>
             ))}
           </ul>
         </>
@@ -50,7 +52,9 @@ function Comments({ postId, commentsList }) {
           <p className="italic text-sm mb-1">{comments.length} comments</p>
           <ul className="list-disc list-inside mb-2">
             {comments.map((c) => (
-              <li key={c.id}>{c.content}</li>
+              <li key={c.id}>
+                {c.content} {c.status}
+              </li>
             ))}
           </ul>
         </>

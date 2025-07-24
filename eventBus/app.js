@@ -13,13 +13,14 @@ app.post("/event", (req, res) => {
     axios.post("http://localhost:3333/event", event); // post
     axios.post("http://localhost:3334/event", event); // comment
     axios.post("http://localhost:3335/event", event); // query
+    axios.post("http://localhost:3336/event", event); // moderation
     res.status(201).json("Ok");
   } catch (error) {
     console.log(error);
   }
 });
 
-const PORT = 3336;
+const PORT = 3340;
 function start() {
   try {
     app.listen(PORT, () => {

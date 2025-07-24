@@ -26,6 +26,13 @@ app.post("/event", (req, res) => {
     } else if (type == "commentCreated") {
       let postComments = posts[data.postId].comments || [];
       posts[data.postId].comments = [...postComments, data];
+    } else if (type == "commentUpdated") {
+      const commentByPost = posts[data.postId].comments;
+      const comment = commentByPost.find((itm) => {
+        return itm.id == data.id;
+      });
+      comment.status = data.status;
+      comment.content = data.content;
     }
     res.status(201).json("Ok");
   } catch (error) {
